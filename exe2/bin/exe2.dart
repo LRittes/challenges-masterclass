@@ -1,5 +1,5 @@
 void main(List<String> arguments) {
-  print(regraDeTres(grupo21: 4, grupo11: 4, grupo22: 2));
+  print(regraDeTres(grupo1: 1000, grupo11: 100, grupo21: 680));
 }
 
 double regraDeTres({int? grupo1, int? grupo11, int? grupo21, int? grupo22}) {
