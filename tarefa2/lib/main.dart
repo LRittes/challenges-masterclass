@@ -82,34 +82,23 @@ class _MyHomePageState extends State<MyHomePage> {
             const Spacer(
               flex: 1,
             ),
-            Container(
-              height: 100,
+            SizedBox(
+              height: 105,
               width: 200,
-              color: Colors.blueGrey,
               child: Column(
-                children: [
-                  Container(
-                    width: 200,
-                    height: 45,
-                    color: Colors.green,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 5,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 20,
-                          height: 20,
-                          color: Colors.red,
-                        ),
-                        const Expanded(
-                          child: Text("text 1", textAlign: TextAlign.center),
-                        ),
-                      ],
-                    ),
-                  )
+                children: const [
+                  ButtonLogin(
+                    pathImage: "assets/images/apple_icon.png",
+                    text: "SIGN IN WITH APPLE",
+                  ),
+                  ButtonLogin(
+                    pathImage: "assets/images/facebook_icon.png",
+                    text: "SIGN IN WITH FACEBOOK",
+                  ),
+                  ButtonLogin(
+                    pathImage: "assets/images/speech_bubble_icon.png",
+                    text: "SIGN IN WITH PHONE NUMBER",
+                  ),
                 ],
               ),
             ),
@@ -126,6 +115,60 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ButtonLogin extends StatelessWidget {
+  final String pathImage;
+  final String text;
+
+  const ButtonLogin({
+    Key? key,
+    required this.pathImage,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      height: 35,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 5,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.white30,
+          width: 2,
+        ),
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.transparent,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 14,
+            height: 14,
+            child: Image.asset(
+              pathImage,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 10,
+                color: Colors.white60,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
