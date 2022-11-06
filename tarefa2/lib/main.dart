@@ -24,8 +24,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final text =
-      "If the sentence is the essential soul to express oneself in their own way, then the paragraph is the virtual body of it. ";
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -54,11 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   Image.asset("assets/images/tinder_icon.png"),
                   const SizedBox(width: 10),
                   const Text(
-                    "Tinder",
+                    "tinder",
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
+                      fontFamily: "ChaletNewYork",
                     ),
                   ),
                 ],
@@ -68,47 +67,82 @@ class _MyHomePageState extends State<MyHomePage> {
               flex: 4,
             ),
             SizedBox(
-              height: 40,
               width: 200,
-              child: Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 10,
-                  color: Colors.white70,
-                ),
+              child: RichText(
                 textAlign: TextAlign.center,
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.white38,
+                    fontFamily: "Britanica",
+                  ),
+                  children: [
+                    TextSpan(
+                        text:
+                            "By tapping Create account or Sign In, you agree to our "),
+                    TextSpan(
+                      text: "Terms",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white54,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    TextSpan(text: ". Learn how we process your data in our "),
+                    TextSpan(
+                      text: "Privacy Policy ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white54,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    TextSpan(text: "and "),
+                    TextSpan(
+                      text: "Cookies Policy",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white54,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    TextSpan(text: "."),
+                  ],
+                ),
               ),
             ),
             const Spacer(
               flex: 1,
             ),
-            SizedBox(
-              height: 105,
-              width: 200,
-              child: Column(
-                children: const [
-                  ButtonLogin(
-                    pathImage: "assets/images/apple_icon.png",
-                    text: "SIGN IN WITH APPLE",
-                  ),
-                  ButtonLogin(
-                    pathImage: "assets/images/facebook_icon.png",
-                    text: "SIGN IN WITH FACEBOOK",
-                  ),
-                  ButtonLogin(
-                    pathImage: "assets/images/speech_bubble_icon.png",
-                    text: "SIGN IN WITH PHONE NUMBER",
-                  ),
-                ],
-              ),
+            Column(
+              children: const [
+                ButtonLogin(
+                  pathImage: "assets/images/apple_icon.png",
+                  text: "SIGN IN WITH APPLE",
+                ),
+                SizedBox(height: 5),
+                ButtonLogin(
+                  pathImage: "assets/images/facebook_icon.png",
+                  text: "SIGN IN WITH FACEBOOK",
+                ),
+                SizedBox(height: 5),
+                ButtonLogin(
+                  pathImage: "assets/images/speech_bubble_icon.png",
+                  text: "SIGN IN WITH PHONE NUMBER",
+                ),
+              ],
             ),
             const Spacer(
               flex: 1,
             ),
-            Container(
-              height: 40,
-              width: 40,
-              color: Colors.deepPurple,
+            const Text(
+              "Trouble Signing In?",
+              style: TextStyle(
+                fontSize: 10,
+                color: Colors.white38,
+                fontFamily: "Britanica",
+              ),
+              textAlign: TextAlign.center,
             ),
             const Spacer(
               flex: 1,
@@ -164,7 +198,7 @@ class ButtonLogin extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 10,
                 color: Colors.white60,
-                fontWeight: FontWeight.w400,
+                fontFamily: "Britanica",
               ),
             ),
           ),
