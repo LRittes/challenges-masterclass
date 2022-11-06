@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
@@ -44,8 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
             const Spacer(
               flex: 7,
             ),
-            SizedBox(
-              height: 60,
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                minHeight: 30,
+                maxWidth: 400,
+                minWidth: 100,
+                maxHeight: 60,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -66,8 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
             const Spacer(
               flex: 4,
             ),
-            SizedBox(
-              width: 200,
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 200,
+                minWidth: 100,
+              ),
               child: RichText(
                 textAlign: TextAlign.center,
                 text: const TextSpan(
