@@ -51,9 +51,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.white,
                   ),
-                  child: const Icon(
-                    Icons.home,
-                    size: 40,
+                  child: ShaderMask(
+                    shaderCallback: (bounds) => const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromARGB(255, 56, 125, 228),
+                        Color.fromARGB(255, 35, 65, 163),
+                        Color.fromARGB(255, 77, 17, 134),
+                      ],
+                    ).createShader(bounds),
+                    child: const Icon(
+                      Icons.home,
+                      size: 40,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const Spacer(
