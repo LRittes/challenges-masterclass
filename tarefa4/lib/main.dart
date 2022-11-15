@@ -252,7 +252,13 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 18,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(
+              color: Colors.black.withOpacity(.2),
+            ),
           ),
           Container(
             width: 160,
