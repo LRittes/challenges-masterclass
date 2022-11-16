@@ -1,33 +1,51 @@
+import 'dart:developer';
 import 'dart:io';
 
 void main() {
-  var a = ReadDotEnv(".env");
-  a.read();
+  var a = DotEnv();
+  var data = a.read(".env");
+
+  for (MapEntry content in data.entries) {
+    log("${content.key} = ${content.value} : ${content.value.runtimeType}");
+  }
 }
 
-class ReadDotEnv {
-  final String path;
-
-  ReadDotEnv(this.path);
-
-  // Map<String, dynamic>
-  void read() {
+class DotEnv {
+  Map<String, dynamic> read(String path) {
     File file = File(path);
-    Map aux = {};
+    Map<String, dynamic> aux = {};
+    String? initString;
     bool inString = false;
 
     var fileContent = file.readAsLinesSync();
 
     for (String line in fileContent) {
       line = line.trim();
+
       if (line.isEmpty) continue;
+
       if (line[0] == "#") continue;
+
       List contentSplited = line.split("=");
+
       if (contentSplited.length < 2) continue;
+
       contentSplited[1] = contentSplited.sublist(1).join("=");
+
       String lineAux = contentSplited[1];
+
       for (int letra = 0; letra < lineAux.length; letra++) {
-        if (lineAux[letra] == '"') inString = !inString;
+        if (initString != null) {
+          if (lineAux[letra] == initString) {
+            inString = false;
+          }
+        } else {
+          if (lineAux[letra] == '"' || lineAux[letra] == "'") {
+            initString = lineAux[letra];
+            inString = true;
+          }
+        }
+
         if (!inString) {
           if (lineAux[letra] == "#") {
             contentSplited[1] =
@@ -37,16 +55,22 @@ class ReadDotEnv {
         }
       }
 
-      if (contentSplited[1]) {
-        // Saber se é dos tipos primitivos e converter
+      aux.putIfAbsent(contentSplited[0], () => contentSplited[1]);
+
+      // convertendo pra int ou double
+      var converted = num.tryParse(aux[contentSplited[0]]);
+      if (converted != null) {
+        aux[contentSplited[0]] = converted;
       }
 
-      aux.putIfAbsent(contentSplited[0], () => contentSplited[1]);
+      // convertendo pra boolean
+      if (aux[contentSplited[0]] == "true") {
+        aux[contentSplited[0]] = true;
+      } else if (aux[contentSplited[0]] == "false") {
+        aux[contentSplited[0]] = false;
+      }
     }
 
-    print(aux);
-
-    // for (var item in aux.entries) {
-    // }
+    return aux;
   }
 }
